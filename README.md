@@ -254,4 +254,3 @@ Importar `docs/Gestor-EOS.postman_collection.json`, ejecutar **Login** y luego *
 - **Base de datos:** Neon (PostgreSQL gratuito y persistente).
 - **Aplicación:** Render Web Service. Build: `npm install --include=dev && npm run build` · Start: `npm start`. Express sirve el API (`/api`) y la página de React compilada desde el mismo servidor.
 
-El paso a paso completo está en **[MANUAL.md](MANUAL.md)**.
