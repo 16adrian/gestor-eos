@@ -1,0 +1,75 @@
+{
+  "info": {
+    "name": "Gestor EOS - Validaciones en el backend",
+    "description": "1) Ejecuta 'Login' (guarda el token solo). 2) Prueba los demás. Cambia la variable 'url' por tu URL de Render.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "url", "value": "http://localhost:4000/api" },
+    { "key": "token", "value": "" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "1. Login (guarda el token)",
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.collectionVariables.set('token', pm.response.json().token);"] }
+      }],
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@eos.com\",\n  \"password\": \"Admin123*\"\n}" },
+        "url": "{{url}}/auth/login"
+      }
+    },
+    {
+      "name": "2. Empresa con RUC INVÁLIDO -> 400",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"nombre\": \"Empresa Falsa\",\n  \"ruc\": \"1790016918001\"\n}" },
+        "url": "{{url}}/empresas"
+      }
+    },
+    {
+      "name": "3. Empresa con RUC VÁLIDO -> 201",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"nombre\": \"Corporación Favorita\",\n  \"ruc\": \"1790016919001\"\n}" },
+        "url": "{{url}}/empresas"
+      }
+    },
+    {
+      "name": "4. Mismo RUC otra vez -> 409 (UNIQUE de la base de datos)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"nombre\": \"Otra empresa\",\n  \"ruc\": \"1790016919001\"\n}" },
+        "url": "{{url}}/empresas"
+      }
+    },
+    {
+      "name": "5. Venta con cédula INVÁLIDA -> 400",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"equipo_id\": 1,\n  \"comprador\": \"Juan Pérez\",\n  \"identificacion\": \"1710034066\",\n  \"precio\": 100,\n  \"fecha\": \"2026-11-01\"\n}" },
+        "url": "{{url}}/ventas"
+      }
+    },
+    {
+      "name": "6. Sin token -> 401",
+      "request": { "auth": { "type": "noauth" }, "method": "GET", "url": "{{url}}/empresas" }
+    },
+    {
+      "name": "7. Comparativa HP vs Lenovo (core)",
+      "request": { "method": "GET", "url": "{{url}}/core/comparar?dimension=marca&corte=2026-10-16" }
+    }
+  ]
+}

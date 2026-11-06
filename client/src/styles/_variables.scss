@@ -1,0 +1,27 @@
+// Colores, tamaños y el punto de quiebre para celulares, en un solo lugar.
+$color-primario: #1d4ed8;
+$color-primario-oscuro: #1e3a8a;
+$color-texto: #1f2937;
+$color-suave: #6b7280;
+$color-borde: #e5e7eb;
+$color-fondo: #f3f4f6;
+$color-blanco: #ffffff;
+$color-exito: #15803d;
+$color-exito-fondo: #dcfce7;
+$color-peligro: #b91c1c;
+$color-peligro-fondo: #fee2e2;
+$color-aviso-fondo: #fef3c7;
+$color-info-fondo: #dbeafe;
+
+$radio: 8px;
+$espacio: 16px;
+$fuente: 'Segoe UI', Roboto, Arial, sans-serif;
+
+$movil: 768px;
+
+// Media query reutilizable: @include movil { ... }
+@mixin movil {
+  @media (max-width: $movil) {
+    @content;
+  }
+}

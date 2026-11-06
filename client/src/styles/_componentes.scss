@@ -1,0 +1,418 @@
+// Componentes reutilizables con nombres BEM: bloque__elemento--modificador
+@use 'variables' as *;
+
+// ----- Botones -----
+.boton {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+  background: $color-blanco;
+  color: $color-texto;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--primario {
+    background: $color-primario;
+    border-color: $color-primario;
+    color: $color-blanco;
+
+    &:hover {
+      background: $color-primario-oscuro;
+      color: $color-blanco;
+    }
+  }
+
+  &--secundario:hover {
+    background: $color-fondo;
+  }
+
+  &--peligro {
+    color: $color-peligro;
+  }
+
+  &--chico {
+    padding: 4px 10px;
+    font-size: 13px;
+  }
+}
+
+// ----- Tarjetas (KPI) -----
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: $espacio;
+  background: $color-blanco;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+  color: $color-texto;
+  text-decoration: none;
+
+  &__titulo {
+    font-size: 13px;
+    color: $color-suave;
+  }
+
+  &__valor {
+    font-size: 26px;
+  }
+
+  &__detalle {
+    font-size: 13px;
+    color: $color-suave;
+  }
+
+  &--enlace:hover {
+    border-color: $color-primario;
+  }
+}
+
+// ----- Panel (caja blanca) -----
+.panel {
+  margin-bottom: $espacio;
+  padding: $espacio;
+  background: $color-blanco;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+
+  &__titulo {
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+}
+
+// ----- Tablas -----
+.tabla-contenedor {
+  overflow-x: auto; // en pantallas pequeñas la tabla se desliza de lado
+  margin-bottom: $espacio;
+  background: $color-blanco;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+
+  th,
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid $color-borde;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: $color-fondo;
+    white-space: nowrap;
+  }
+
+  &__numero {
+    text-align: right !important;
+    white-space: nowrap;
+  }
+
+  &__nota {
+    display: block;
+    color: $color-suave;
+    font-size: 12px;
+  }
+
+  &__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  &__vacia {
+    text-align: center !important;
+    color: $color-suave;
+  }
+
+  &__seccion td {
+    background: $color-info-fondo;
+    font-weight: 700;
+  }
+
+  &__total td {
+    font-weight: 700;
+    background: $color-fondo;
+  }
+
+  &__celda--mejor {
+    background: $color-exito-fondo;
+  }
+
+  &__celda--peor {
+    background: $color-peligro-fondo;
+  }
+
+  &--comparativa td:first-child {
+    min-width: 260px;
+  }
+}
+
+// ----- Matriz de vencimientos (mapa de calor) -----
+.matriz__celda {
+  text-align: center !important;
+
+  &--baja {
+    background: #eff6ff;
+  }
+
+  &--media {
+    background: $color-aviso-fondo;
+  }
+
+  &--alta {
+    background: $color-peligro-fondo;
+    font-weight: 700;
+  }
+
+  &--vencido {
+    border-right: 2px solid $color-peligro;
+  }
+}
+
+// ----- Formularios (GRID de 2 columnas que pasa a 1 en el celular) -----
+.formulario {
+  &__grilla {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px $espacio;
+
+    @include movil {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__campo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &--ancho {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__etiqueta {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__requerido {
+    color: $color-peligro;
+  }
+
+  &__control {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid $color-borde;
+    border-radius: $radio;
+    font: inherit;
+    background: $color-blanco;
+
+    &:focus {
+      outline: 2px solid $color-info-fondo;
+      border-color: $color-primario;
+    }
+  }
+
+  &__ayuda {
+    color: $color-suave;
+  }
+
+  &__error {
+    color: $color-peligro;
+    font-weight: 600;
+  }
+
+  &__casilla {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &--demo {
+      font-size: 13px;
+      color: $color-suave;
+    }
+  }
+
+  &__pie {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: $espacio;
+
+    .barra {
+      margin: 0;
+    }
+  }
+}
+
+// ----- Selector de marcas o modelos (casillas) -----
+.selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 4px 12px;
+  max-height: 180px;
+  overflow-y: auto;
+
+  &__opcion {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+  }
+}
+
+// ----- Mensajes -----
+.alerta {
+  margin: 0 0 $espacio;
+  padding: 10px 14px;
+  border-radius: $radio;
+  background: $color-info-fondo;
+
+  &--exito {
+    background: $color-exito-fondo;
+    color: $color-exito;
+  }
+
+  &--peligro {
+    background: $color-peligro-fondo;
+    color: $color-peligro;
+  }
+
+  &--info {
+    background: $color-info-fondo;
+  }
+}
+
+// ----- Etiquetas de estado / riesgo -----
+.etiqueta {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: $color-fondo;
+
+  &--activo,
+  &--bajo,
+  &--vigente,
+  &--cerrado {
+    background: $color-exito-fondo;
+    color: $color-exito;
+  }
+
+  &--alto,
+  &--robo,
+  &--robado,
+  &--vencido,
+  &--rechazado {
+    background: $color-peligro-fondo;
+    color: $color-peligro;
+  }
+
+  &--medio,
+  &--garantia,
+  &--por_vencer,
+  &--abierto {
+    background: $color-aviso-fondo;
+  }
+
+  &--vendido,
+  &--usado,
+  &--nuevo {
+    background: $color-info-fondo;
+  }
+}
+
+.variacion {
+  font-weight: 600;
+
+  &--sube {
+    color: $color-peligro;
+  }
+
+  &--baja {
+    color: $color-exito;
+  }
+}
+
+// ----- Paginación -----
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+// ----- Ficha de equipo (GRID de pares etiqueta / valor) -----
+.ficha {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 20px;
+  margin: 0;
+  padding: $espacio;
+  background: $color-blanco;
+  border: 1px solid $color-borde;
+  border-radius: $radio;
+
+  dt {
+    font-weight: 600;
+    color: $color-suave;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+// ----- Login (FLEXBOX para centrar la caja) -----
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: $espacio;
+  background: $color-primario-oscuro;
+
+  &__caja {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 360px;
+    padding: 28px;
+    background: $color-blanco;
+    border-radius: $radio;
+  }
+
+  &__titulo {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  &__texto {
+    margin: 0 0 8px;
+    text-align: center;
+    color: $color-suave;
+  }
+
+  &__boton {
+    margin-top: 10px;
+  }
+}

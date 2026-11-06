@@ -1,0 +1,26 @@
+@use 'variables' as *;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $fuente;
+  font-size: 15px;
+  color: $color-texto;
+  background: $color-fondo;
+}
+
+a {
+  color: $color-primario;
+
+  &:hover {
+    color: $color-primario-oscuro;
+  }
+}
+
+h1,
+h2 {
+  margin: 0;
+}

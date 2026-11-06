@@ -1,0 +1,17 @@
+# Dependencias (se reinstalan con npm install)
+node_modules/
+
+# Claves y contraseñas: NUNCA se suben
+.env
+
+# Compilado de React (Render lo genera solo)
+client/dist/
+
+# El Excel original de la empresa no se sube
+*.xlsm
+*.xlsx
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log

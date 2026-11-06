@@ -1,0 +1,22 @@
+{
+  "name": "gestor-eos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gestor EOS: core comparativo de rentabilidad y riesgo + administración MVC (Express + React + PostgreSQL)",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=20.19 <25"
+  },
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "seed": "npm run seed -w server",
+    "build": "npm run build -w client",
+    "start": "npm start -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
