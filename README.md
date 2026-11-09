@@ -6,8 +6,8 @@ Sistema web de **gestión comercial y de activos tecnológicos** para **EOS Tech
 
 | | |
 |---|---|
-| **Aplicación publicada** | https://TU-APP.onrender.com *(reemplazar)* |
-| **Video de la administración** | https://www.loom.com/... *(reemplazar)* |
+| **Aplicación publicada** | https://gestor-eos.onrender.com |
+| **Video de la administración** | https://youtu.be/rx-b3QXfR2o  |
 | **Usuario de prueba** | `admin@eos.com` / `Admin123*` |
 
 ---
